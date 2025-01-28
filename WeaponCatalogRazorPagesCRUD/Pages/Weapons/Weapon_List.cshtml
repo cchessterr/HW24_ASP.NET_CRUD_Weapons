@@ -1,0 +1,139 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model WeaponCatalogRazorPagesCRUD.Pages.Weapons.Weapon_ListModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог стрелкового оружия</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #1e293b;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 30px 0;
+            color: #38bdf8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #2d3748;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .firearm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            color: #cbd5e0;
+        }
+
+        .firearm-table th,
+        .firearm-table td {
+            border: 1px solid #4a5568;
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        .firearm-table th {
+            background-color: #4a5568;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #e2e8f0;
+        }
+
+        .firearm-table tr:nth-child(even) {
+            background-color: #2b3945;
+        }
+
+        .firearm-table tr:nth-child(odd) {
+            background-color: #1f2937;
+        }
+
+        .firearm-table tr:hover {
+            background-color: #4a5568;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        .firearm-table a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .firearm-table a:hover {
+            color: #63b3ed;
+        }
+
+        p {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        p a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #10b981;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        p a:hover {
+            background-color: #059669;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Каталог стрелкового оружия</h1>
+
+    <div class="container">
+        <table class="firearm-table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Калибр</th>
+                    <th>Автоматический режим</th>
+                    <th>Тип</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var firearm in Model.Firearms)
+                {
+                    <tr>
+                        <td>
+                            <a asp-page="/Weapons/Weapon_Details" asp-route-id="@firearm.Id">
+                                @firearm.Name
+                            </a>
+                        </td>
+                        <td>@firearm.Caliber</td>
+                        <td>@(firearm.HasAutomaticMode ? "Да" : "Нет")</td>
+                        <td>@firearm.WeaponType</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <p><a asp-page="/Index">На главную</a></p>
+    <p><a asp-page="/Weapons/Weapon_CreateForm">Добавить</a></p>
+</body>
+</html>

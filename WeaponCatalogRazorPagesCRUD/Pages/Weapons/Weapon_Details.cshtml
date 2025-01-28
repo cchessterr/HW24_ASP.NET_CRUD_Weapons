@@ -1,0 +1,93 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model WeaponCatalogRazorPagesCRUD.Pages.Weapons.Weapon_DetailsModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@Model.Firearm.Name</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #121212;
+            color: #e5e5e5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin: 20px 0;
+            color: #ff6b6b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .details p {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 5px solid #ff6b6b;
+            border-radius: 5px;
+        }
+
+        p strong {
+            font-style: italic;
+            color: #4ecdc4;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1dd1a1;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+            a:hover {
+                background-color: #10ac84;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+            }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>@Model.Firearm.Name</h1>
+        <div class="details">
+            <p>@Model.Firearm.Description</p>
+            <p><strong>Калибр:</strong> @Model.Firearm.Caliber</p>
+            <p><strong>Тип оружия:</strong> @Model.Firearm.WeaponType</p>
+            <p><strong>Автоматический режим:</strong> @(Model.Firearm.HasAutomaticMode ? "Да" : "Нет")</p>
+        </div>
+        <p><a asp-page="/Weapons/Weapon_EditForm" asp-route-id="@Model.Firearm.Id">Редактировать</a></p>
+        <p><a asp-page="/Weapons/Weapon_Delete" asp-route-id="@Model.Firearm.Id">Удалить</a></p>
+
+        <p><a asp-page="/Weapons/Weapon_List">Перейти в каталог с оружиями</a></p>
+
+    </div>
+</body>
+</html>

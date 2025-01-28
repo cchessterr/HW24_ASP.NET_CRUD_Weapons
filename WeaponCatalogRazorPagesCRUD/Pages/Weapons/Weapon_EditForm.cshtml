@@ -1,0 +1,142 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model WeaponCatalogRazorPagesCRUD.Pages.Weapons.Weapon_EditFormModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование @Model.EditingWeapon.Name</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #121212;
+            color: #e5e5e5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin: 20px 0;
+            color: #ff6b6b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        input[type="text"], input[type="number"], select {
+            font-size: 1rem;
+            padding: 10px;
+            border: 2px solid #4ecdc4;
+            border-radius: 5px;
+            background: #121212;
+            color: #e5e5e5;
+        }
+
+            input[type="text"]:focus, input[type="number"]:focus, select:focus {
+                outline: none;
+                border-color: #1dd1a1;
+            }
+
+        button {
+            background-color: #ff6b6b;
+            color: #ffffff;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+            button:hover {
+                background-color: #e84141;
+                transform: translateY(-2px);
+            }
+
+        a {
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+            a input[type="button"] {
+                background-color: #4ecdc4;
+                color: #ffffff;
+                font-size: 1.2rem;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+            }
+
+                a input[type="button"]:hover {
+                    background-color: #38bdf8;
+                    transform: translateY(-2px);
+                }
+    </style>
+</head>
+<body>
+	<h1>Редактирование: @Model.EditingWeapon.Name</h1>
+
+    <div class="container">
+        <form method="post" action="">
+            <label for="id">ID:</label>
+            <input type="number" id="id" name="id" value="@Model.EditingWeapon.Id" readonly />
+
+            <label for="name">Имя оружия:</label>
+            <input type="text" id="name" name="name" minlength="1" maxlength="120" value="@Model.EditingWeapon.Name" required />
+
+            <label for="description">Описание и подробности:</label>
+            <input type="text" id="description" name="description" minlength="1" value="@Model.EditingWeapon.Description" required />
+
+            <label for="caliber">Калибр патронов:</label>
+            <input type="text" id="caliber" name="caliber" minlength="1" value="@Model.EditingWeapon.Caliber" required />
+
+            <label for="hasAutomaticMode">Наличие автоматического режима:</label>
+            <select id="hasAutomaticMode" name="HasAutomaticMode">
+                <option value="true" selected="@(Model.EditingWeapon.HasAutomaticMode == true)">Да</option>
+                <option value="false" selected="@(Model.EditingWeapon.HasAutomaticMode == false)">Нет</option>
+            </select>
+
+            <label for="weaponType">Тип оружия:</label>
+            <input type="text" id="weaponType" name="weaponType" minlength="1" value="@Model.EditingWeapon.WeaponType" required />
+
+            <button>Сохранить</button>
+
+            <a asp-page="/Weapons/Weapon_Details" asp-route-id="@Model.EditingWeapon.Id">
+                <input type="button" value="Отменить" />
+            </a>
+        </form>
+    </div>
+</body>
+</html>
